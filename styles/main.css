@@ -184,6 +184,22 @@
   .story-text{ max-width:520px; margin:0 auto; line-height:1.9; color:var(--text); font-size:1.05rem; }
   .story-names{ margin-top:22px; font-family:'Charmonman'; font-size:1.6rem; color:var(--sun-deep); }
 
+  /* ---------- congrats button ---------- */
+  .congrats-btn{
+    display:inline-flex; align-items:center; gap:9px; margin-top:22px;
+    font-family:'Mali'; font-weight:600; font-size:1rem; letter-spacing:.05em; color:#5a3d12;
+    background:linear-gradient(135deg, #F9E3A8 0%, var(--sun) 55%, #E4A930 100%);
+    border:1.5px solid rgba(255,252,244,.85); border-radius:40px; padding:12px 30px; cursor:pointer;
+    box-shadow:0 10px 24px rgba(221,154,28,.28), inset 0 1px 0 rgba(255,255,255,.65);
+    transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    -webkit-tap-highlight-color:transparent; touch-action:manipulation;
+  }
+  .congrats-btn svg{ width:18px; height:18px; flex:none; }
+  .congrats-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px rgba(221,154,28,.34), inset 0 1px 0 rgba(255,255,255,.65); filter:saturate(1.05); }
+  .congrats-btn:active{ transform:translateY(0) scale(.96); }
+  .congrats-btn:focus-visible{ outline:3px solid var(--sun-deep); outline-offset:4px; }
+  .congrats-thanks{ min-height:1.6em; margin:12px 0 0; color:var(--text-soft); font-size:.95rem; }
+
   /* ---------- photo slideshow (fade) ---------- */
   .photo-placeholder.is-clickable{ cursor:zoom-in; -webkit-tap-highlight-color:transparent; }
   .photo-placeholder.is-clickable:focus-visible{ outline:3px solid var(--sun-deep); outline-offset:6px; }
