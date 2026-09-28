@@ -7,273 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FBF3DF;
-    --cream-deep:#F3E6C4;
-    --cream-card:#FFFCF4;
-    --sun:#F3B531;
-    --sun-deep:#DD9A1C;
-    --sun-center:#8B5A2B;
-    --leaf:#7E9A4E;
-    --leaf-deep:#5C7A37;
-    --sky:#A9D3EE;
-    --sky-deep:#7FB8E0;
-    --navy:#2C4A63;
-    --text:#4A3D28;
-    --text-soft:#7A6C51;
-    --shadow: 0 14px 34px rgba(139,90,43,0.14);
-    box-sizing:border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  *,*::before,*::after{box-sizing:inherit;}
-  html{scroll-behavior:smooth; scroll-padding-top: env(safe-area-inset-top, 0px);}
-  html, body{height:100%;}
-  body{
-    margin:0;
-    background:var(--cream);
-    color:var(--text);
-    font-family:'Mali', sans-serif;
-    font-weight:400;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-  svg {
-    overflow: visible;
-  }
-  h1,h2{
-    font-family:'Charmonman', cursive;
-    font-weight:700;
-    color:var(--navy);
-    margin:0;
-  }
-  img{max-width:100%; display:block;}
-  section{position:relative; padding: 88px 20px; max-width:720px; margin:0 auto;}
-  .section-title{
-    text-align:center;
-    font-size:clamp(2.1rem, 6vw, 2.9rem);
-    margin-bottom:10px;
-  }
-  .section-sub{
-    text-align:center;
-    color:var(--text-soft);
-    font-size:0.98rem;
-    margin:0 0 46px;
-  }
-
-  /* ---------- decorative petals ---------- */
-  .petals-layer{position:fixed; inset:0; pointer-events:none; z-index:30; overflow:hidden;}
-  .petal{
-    position:absolute; top:-30px; will-change:transform,opacity;
-    animation-name:fall; animation-timing-function:linear; animation-iteration-count:1;
-    opacity:0.9;
-  }
-  @keyframes fall{
-    to{ transform: translateY(112vh) translateX(var(--drift,20px)) rotate(var(--spin,180deg)); opacity:0.15; }
-  }
-
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative;
-    min-height:100svh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    overflow:hidden;
-    padding: calc(60px + env(safe-area-inset-top,0px)) 24px 40px;
-    background:
-      radial-gradient(ellipse 90% 55% at 50% 0%, var(--sky) 0%, rgba(169,211,238,0) 62%),
-      var(--cream);
-  }
-  .cloud{
-    position:absolute; background:#fff; border-radius:100px; opacity:0.85; filter:blur(0.5px);
-    box-shadow: 40px 6px 0 -6px #fff, -46px 10px 0 -10px #fff;
-  }
-  .cloud1{ width:120px; height:40px; top:8%; left:8%; animation:drift 46s linear infinite; }
-  .cloud2{ width:90px; height:32px; top:16%; right:10%; animation:drift 60s linear infinite reverse; }
-  @keyframes drift{
-    from{ transform: translateX(-10vw); }
-    to{ transform: translateX(10vw); }
-  }
-  .sun{
-    position:absolute; top:6%; right:12%; width:90px; height:90px;
-    animation: spin 40s linear infinite;
-    opacity:0.9;
-  }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
-  .bee{
-    position:absolute; font-size:26px; left:-40px; top:38%;
-    animation: fly 13s ease-in-out infinite;
-    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.15));
-  }
-  @keyframes fly{
-    0%{ transform: translate(0,0) rotate(0deg); opacity:0; }
-    6%{ opacity:1; }
-    25%{ transform: translate(28vw,-18px) rotate(8deg); }
-    50%{ transform: translate(55vw,10px) rotate(-6deg); }
-    75%{ transform: translate(80vw,-14px) rotate(6deg); }
-    94%{ opacity:1; }
-    100%{ transform: translate(120vw,0) rotate(0deg); opacity:0; }
-  }
-  .hero-content{ position:relative; z-index:2; }
-  .hero-eyebrow{
-    font-size:1rem; color:var(--navy); letter-spacing:0.02em; margin:0 0 32px;
-    font-weight:500;
-  }
-  .hero-names{
-    font-size:clamp(3rem, 13vw, 5.4rem);
-    line-height:1.05;
-    display:flex; align-items:center; justify-content:center; gap:0.35em; flex-wrap:wrap;
-  }
-  .hero-names .amp{
-    font-size:0.62em; color:var(--sun-deep); transform:translateY(-2px);
-  }
-  .hero-date{
-    margin-top:20px; font-size:1.2rem; color:var(--navy);
-    font-weight:600; letter-spacing:0.04em;
-    background:var(--cream-card); padding:8px 22px; border-radius:40px;
-    display:inline-block; box-shadow:var(--shadow);
-  }
-  .sunflower-row{
-    position:absolute; left:0; right:0; bottom:-6px;
-    display:flex; justify-content:space-evenly; align-items:flex-end;
-    height:120px; z-index:1; pointer-events:none;
-  }
-  .sunflower-row svg{ width:54px; height:auto; transform-origin:bottom center; animation: sway 4.5s ease-in-out infinite; }
-  .sunflower-row svg:nth-child(odd){ animation-delay:0.6s; width:40px; }
-  .sunflower-row svg:nth-child(3n){ animation-delay:1.2s; width:62px; }
-  @keyframes sway{
-    0%,100%{ transform: rotate(-3deg); }
-    50%{ transform: rotate(3deg); }
-  }
-  .scroll-cue{
-    position:relative; z-index:2; margin-top:46px; background:none; border:none;
-    color:var(--navy); font-family:'Mali'; font-size:0.95rem; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:4px; opacity:0.85;
-  }
-  .scroll-cue svg{ animation: bob 1.8s ease-in-out infinite; }
-  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
-
-  /* ---------- reveal on scroll ---------- */
-  .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.8s ease, transform 0.8s ease; }
-  .reveal.visible{ opacity:1; transform:translateY(0); }
-
-  /* ---------- countdown ---------- */
-  .countdown-section{ text-align:center; }
-  .countdown-grid{
-    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
-  }
-  .count-box{
-    background:var(--cream-card);
-    border:2px solid var(--sun);
-    border-radius:18px;
-    width:82px; padding:16px 6px;
-    box-shadow:var(--shadow);
-  }
-  .count-box span{
-    display:block; font-size:1.9rem; font-weight:700; color:var(--navy); font-family:'Mali';
-  }
-  .count-box label{ font-size:0.78rem; color:var(--text-soft); }
-
-  /* ---------- story / photo ---------- */
-  .story-section{ text-align:center; }
-  .photo-frame{
-    position:relative; width:min(340px, 78vw); aspect-ratio:1/1; margin:0 auto 34px;
-  }
-  .photo-placeholder{
-    width:100%; height:100%; border-radius:50%;
-    background:var(--cream-card);
-    border:3px dashed var(--sun-deep);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    color:var(--text-soft); gap:8px; overflow:hidden;
-  }
-  .photo-placeholder img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
-  .placeholder-icon{ font-size:2.4rem; }
-  .photo-wreath{ position:absolute; inset:-26px; width:calc(100% + 52px); height:calc(100% + 52px); pointer-events:none; }
-  .story-text{ max-width:520px; margin:0 auto; line-height:1.9; color:var(--text); font-size:1.05rem; }
-  .story-names{ margin-top:22px; font-family:'Charmonman'; font-size:1.6rem; color:var(--sun-deep); }
-
-  /* ---------- wedding card flip ---------- */
-  .card-section{ text-align:center; }
-  .wedding-card{
-    width:min(450px, 80vw); aspect-ratio:1078/1518; margin:0 auto; perspective:1400px; cursor:pointer;
-  }
-  .wedding-card:focus-visible .wedding-card-inner{ outline:3px solid var(--sun-deep); outline-offset:4px; }
-  .wedding-card-inner{
-    position:relative; width:100%; height:100%; transition:transform 0.9s cubic-bezier(.4,.2,.2,1);
-    transform-style:preserve-3d; border-radius:14px; box-shadow:var(--shadow);
-  }
-  .wedding-card.flipped .wedding-card-inner{ transform:rotateY(180deg); }
-  .wedding-card-face{
-    position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; overflow:hidden;
-    border:6px solid var(--cream-card);
-  }
-  .wedding-card-face img{ width:100%; height:100%; object-fit:cover; }
-  .wedding-card-face.back{ transform:rotateY(180deg); }
-  .card-hint{ margin-top:20px; color:var(--text-soft); font-size:0.92rem; }
-
-  /* ---------- schedule timeline ---------- */
-  .timeline{
-    position:relative; margin-top:10px;
-    padding-left:34px;
-  }
-  .timeline::before{
-    content:''; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
-    background:repeating-linear-gradient(to bottom, var(--sun) 0 8px, transparent 8px 14px);
-  }
-  .timeline-item{ position:relative; padding-bottom:34px; }
-  .timeline-item:last-child{ padding-bottom:0; }
-  .timeline-dot{
-    position:absolute; left:-34px; top:2px; width:20px; height:20px; border-radius:50%;
-    background:var(--sun); border:3px solid var(--cream-card); box-shadow:0 0 0 2px var(--sun-deep);
-    display:flex; align-items:center; justify-content:center; font-size:11px;
-  }
-  .timeline-time{ font-weight:700; color:var(--sun-deep); font-size:1.05rem; }
-  .timeline-label{ color:var(--navy); font-size:1.15rem; margin-top:2px; font-family:'Mali'; font-weight:600;}
-
-  /* ---------- location ---------- */
-  .location-section{ text-align:center; }
-  .location-card{
-    background:var(--cream-card); border-radius:20px; padding:30px 26px;
-    box-shadow:var(--shadow); display:inline-block; max-width:100%;
-    width: 100%;
-  }
-  .location-card p{ margin:6px 0; color:var(--text); }
-  .location-card .village{ font-size:1.2rem; color:var(--navy); font-weight:600; }
-  .map-embed{
-    margin:20px 0 4px; border-radius:14px; overflow:hidden; border:3px solid var(--sun);
-    box-shadow:0 8px 20px rgba(139,90,43,0.12);
-  }
-  .map-embed iframe{ display:block; }
-  .map-btn{
-    display:inline-flex; align-items:center; gap:8px; margin-top:18px;
-    background:var(--leaf); color:#fff; text-decoration:none; font-family:'Mali'; font-weight:600;
-    padding:12px 26px; border-radius:40px; box-shadow:var(--shadow); transition:transform 0.2s ease, background 0.2s ease;
-  }
-  .map-btn:hover{ background:var(--leaf-deep); transform:translateY(-2px); }
-
-  /* ---------- footer ---------- */
-  .footer{
-    background:var(--cream-deep); text-align:center; padding: 60px 24px calc(46px + env(safe-area-inset-bottom,0px));
-    position:relative; overflow:hidden;
-  }
-  .footer-row{ display:flex; justify-content:center; gap:18px; margin-bottom:26px; flex-wrap:wrap; }
-  .footer-row svg{ width:34px; height:auto; opacity:0.9; }
-  .footer p{ margin:4px 0; color:var(--text); }
-  .footer-thanks{ color:var(--text-soft); font-size:0.95rem; }
-  .footer-names{ font-family:'Charmonman'; font-size:1.8rem; color:var(--navy); margin-top:14px !important; }
-
-  @media (prefers-reduced-motion: reduce){
-    .cloud, .sun, .bee, .sunflower-row svg, .scroll-cue svg, .petal{ animation:none !important; }
-    .reveal{ transition:none; }
-  }
-
-  @media (max-width:480px){
-    section{ padding:64px 18px; }
-    .timeline{ padding-left:28px; }
-    .timeline-dot{ left:-28px; }
-  }
-</style>
+<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
@@ -337,6 +71,9 @@
       <svg class="photo-wreath" viewBox="0 0 200 200" aria-hidden="true">
         <g id="wreathFlowers"></g>
       </svg>
+      <span class="photo-zoom-badge" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>
+      </span>
     </div>
     <p class="story-text">
       แม้ทุกวันจะไม่สมบูรณ์แบบ แต่สิ่งที่ไม่เคยเปลี่ยน คือเรายังเลือกที่จะมีกันและกันในชีวิตเสมอ
@@ -416,120 +153,24 @@
   <p class="footer-names">ตะวัน &amp; โอ๊ต</p>
 </footer>
 
-<script>
-(function(){
-  // ---- small reusable sunflower SVG markup ----
-  function sunflowerSVG(){
-    return '<svg viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">'+
-      '<line x1="30" y1="40" x2="30" y2="88" stroke="#5C7A37" stroke-width="3"/>'+
-      '<path d="M30 55 C 18 55, 12 68, 20 74" stroke="#7E9A4E" stroke-width="3" fill="none"/>'+
-      '<g transform="translate(30,26)">'+
-        Array.from({length:10}).map(function(_,i){
-          var angle = i*36;
-          return '<ellipse cx="0" cy="-20" rx="6" ry="14" fill="#F3B531" transform="rotate('+angle+')"/>';
-        }).join('')+
-        '<circle r="11" fill="#8B5A2B"/>'+
-      '</g>'+
-    '</svg>';
-  }
+<!-- ===== Lightbox gallery (zoom + carousel) ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="แกลเลอรี่รูปภาพ" aria-hidden="true">
+  <div class="lb-top">
+    <span class="lb-counter" id="lbCounter" aria-live="polite">1 / 1</span>
+    <div class="lb-tools">
+      <button type="button" class="lb-btn" id="lbZoomOut" aria-label="ซูมออก"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+      <button type="button" class="lb-btn" id="lbZoomIn" aria-label="ซูมเข้า"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button type="button" class="lb-btn" id="lbClose" aria-label="ปิดแกลเลอรี่"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="lb-viewport" id="lbViewport"><div class="lb-track" id="lbTrack"></div></div>
+  <button type="button" class="lb-arrow prev" id="lbPrev" aria-label="รูปก่อนหน้า"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button type="button" class="lb-arrow next" id="lbNext" aria-label="รูปถัดไป"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <p class="lb-hint">แตะสองครั้ง / บีบนิ้วเพื่อซูม · ปัดเพื่อเลื่อนรูป</p>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+</div>
 
-  var row = document.getElementById('sunflowerRow');
-  for(var i=0;i<7;i++){ row.insertAdjacentHTML('beforeend', sunflowerSVG()); }
-
-  var wreath = document.getElementById('wreathFlowers');
-  var wreathHTML = '';
-  var count = 8;
-  for(var w=0; w<count; w++){
-    var ang = (360/count)*w;
-    var rad = ang * Math.PI/180;
-    var x = 100 + Math.cos(rad)*92;
-    var y = 100 + Math.sin(rad)*92;
-    wreathHTML += '<g transform="translate('+x+','+y+') rotate('+ang+') scale(0.5)">'+
-      '<g transform="translate(0,10)">'+
-      Array.from({length:8}).map(function(_,i){
-        var a2 = i*45;
-        return '<ellipse cx="0" cy="-14" rx="5" ry="11" fill="#F3B531" transform="rotate('+a2+')"/>';
-      }).join('')+
-      '<circle r="8" fill="#8B5A2B"/>'+
-      '</g></g>';
-  }
-  wreath.innerHTML = wreathHTML;
-
-  var footerFlowers = document.getElementById('footerFlowers');
-  for(var f=0; f<5; f++){ footerFlowers.insertAdjacentHTML('beforeend', sunflowerSVG()); }
-
-  // ---- countdown ----
-  var target = new Date('2026-10-04T08:19:00+07:00').getTime();
-  function updateCountdown(){
-    var now = Date.now();
-    var diff = Math.max(0, target - now);
-    var d = Math.floor(diff/86400000);
-    var h = Math.floor((diff%86400000)/3600000);
-    var m = Math.floor((diff%3600000)/60000);
-    var s = Math.floor((diff%60000)/1000);
-    var pad = function(n){ return String(n).padStart(2,'0'); };
-    var elD = document.getElementById('cd-days');
-    var elH = document.getElementById('cd-hours');
-    var elM = document.getElementById('cd-mins');
-    var elS = document.getElementById('cd-secs');
-    if(elD){ elD.textContent = pad(d); elH.textContent = pad(h); elM.textContent = pad(m); elS.textContent = pad(s); }
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // ---- card flip ----
-  var card = document.getElementById('weddingCard');
-  function toggleCard(){
-    var flipped = card.classList.toggle('flipped');
-    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-  }
-  card.addEventListener('click', toggleCard);
-  card.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleCard(); }
-  });
-
-  // ---- falling petals (cute ambient animation, capped count) ----
-  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!prefersReduced){
-    var layer = document.getElementById('petalsLayer');
-    var colors = ['#F3B531','#F6C862','#E8A93A'];
-    function spawnPetal(){
-      if(layer.children.length > 16) return;
-      var petal = document.createElement('div');
-      petal.className = 'petal';
-      var size = 8 + Math.random()*7;
-      petal.style.width = size+'px';
-      petal.style.height = (size*0.7)+'px';
-      petal.style.left = (Math.random()*100)+'vw';
-      petal.style.background = colors[Math.floor(Math.random()*colors.length)];
-      petal.style.borderRadius = '60% 40% 60% 40%';
-      var duration = 9 + Math.random()*7;
-      petal.style.animationDuration = duration+'s';
-      petal.style.setProperty('--drift', (Math.random()*80-40)+'px');
-      petal.style.setProperty('--spin', (Math.random()*360)+'deg');
-      layer.appendChild(petal);
-      setTimeout(function(){ petal.remove(); }, duration*1000+200);
-    }
-    setInterval(spawnPetal, 1400);
-    spawnPetal();
-  }
-
-  // ---- scroll reveal ----
-  var revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else {
-    revealEls.forEach(function(el){ el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="scripts/sunflower-effect.js" async></script>
+<script src="scripts/gallery.js" async></script>
 </body>
 </html>
