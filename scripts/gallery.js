@@ -6,18 +6,22 @@
    ===================================================================== */
 const PHOTO_BASE_PATH = 'assets/images/';
 const PHOTO_IMAGES = [
-  '01-couple.jpg',
-  '02-couple.jpg',
   '03-couple.jpg',
-  '04-couple.jpg',
   '05-couple.jpg',
-  '06-couple.jpg',
+  '02-couple.jpg',
   '07-couple.jpg',
   '08-couple.jpg',
-  '0o-couple.jpg',
-  '10-couple.jpg',
+  '01-couple.jpg',
+  '04-couple.jpg',
+  '09-couple.jpg',
   '11-couple.jpg',
   '12-couple.jpg',
+  '13-couple.jpg',
+  '14-couple.jpg',
+  '15-couple.jpg',
+  '10-couple.jpg',
+  '06-couple.jpg',
+  '16-couple.jpg',
 ];
 const PHOTO_FADE_INTERVAL = 4500;   // ms ระหว่างการเปลี่ยนรูป (fade)
 const PHOTO_MAX_ZOOM = 5;           // ซูมสูงสุด (เท่า)
