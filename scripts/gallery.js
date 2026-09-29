@@ -18,7 +18,6 @@ const PHOTO_IMAGES = [
   '12-couple.jpg',
   '13-couple.jpg',
   '14-couple.jpg',
-  '15-couple.jpg',
   '10-couple.jpg',
   '06-couple.jpg',
 ];
