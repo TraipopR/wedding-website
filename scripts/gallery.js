@@ -14,6 +14,10 @@ const PHOTO_IMAGES = [
   '06-couple.jpg',
   '07-couple.jpg',
   '08-couple.jpg',
+  '0o-couple.jpg',
+  '10-couple.jpg',
+  '11-couple.jpg',
+  '12-couple.jpg',
 ];
 const PHOTO_FADE_INTERVAL = 4500;   // ms ระหว่างการเปลี่ยนรูป (fade)
 const PHOTO_MAX_ZOOM = 5;           // ซูมสูงสุด (เท่า)
